@@ -1,0 +1,20 @@
+{
+	"version": "alpha 0.1",
+	"name": "FoxParking",
+	"launch_path": "index.html",
+	"description": "Estacionamento IoT e um webapp desenvolvido afim de axiliar os motoristas em estacionamentos não se passando por situações inesperadas, saiba quanto tempo voce tem antes que prazo do estaciomento vença, verifique e se há vagas no estacionamento antes mesmo de entrar",
+	"icons":{
+	"16": "/icons/16.png",
+	"32": "/icons/32.png",
+	"48": "/icons/48.png",
+	"64": "/icons/64.png",
+	"128": "/icons/128.png"
+	},
+	"developer":{
+	"name": "Icaro Ramires",
+	"url": "http://www.icarobsi.pusku.com"
+	},
+	"default_locale": "pt-br"
+}
+
+

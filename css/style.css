@@ -1,0 +1,117 @@
+/* PAGINA DE ESTILO DO WEBAPP FOXPARKING
+	Authors: Ícaro Ramires, Yuri Rodrigues, Igo Romero;
+
+	description: Este aplicativo tem como objeto atumatizar um estacionamento de forma sustentavel e usando
+	tecnologia internet of things fazendo com que voce encontre um estacionamento em que haja vagas disponiveis 
+	e que passe a contar o tempo em que seu carro está no estaciomento identificando-o atraves do sensor de luminosidade
+	do kit IoT calculando o valor a ser pago exato pelo tempo em que ficou estacionado.
+
+	Desenvolvido na #CPBR7
+*/
+*{ margin: 0;padding: 0; }
+
+section#wrap{
+	background: #278BC9;
+}
+section#wrap header h1{
+	text-align: center;
+	padding: 5px;
+	color: #FFFFFF;
+	font-family: "Fira Sans";
+	font-size: 53px;
+	text-shadow: 0 3.5px 0 #125A84;	
+}
+
+section#wrap header h1 img{
+	position: relative;
+	top: 20px;
+}
+section#main {
+	text-align: center;
+}
+
+section#main table{
+	padding: 10px;
+	background: #FFFFFF;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+section#main table thead tr th{
+	font-size: 20px;
+	font-family: "Fira Sans";
+}
+section#main table tbody tr{
+	text-align: right;
+	font-family: "Fira Sans";
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+section#main table tbody tr td{
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+section#time table{
+	padding: 10px;
+	background: #FFFFFF;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+section#time table thead tr th{
+	font-size: 20px;
+	font-family: "Fira Sans";
+}
+
+section#time table thead tr th span{
+	font-size: 30px;
+	color: #E65A0A;
+}
+
+section#time table thead tr th ul li span{
+	font-size:25px;
+}
+section#time table tbody tr{
+	text-align: right;
+	font-size: 20px;
+	text-align: left;
+	font-family: "Fira Sans";
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+section#time table tbody tr td{
+	margin-left: 20px;
+	padding: 5px 10px;
+}
+
+section#time table tbody tr td p#tempo, p#valor{
+	font-size: 30px;
+	font-weight: 900;
+	font-style: bold;
+
+}
+
+section#time table tbody tr td p#tempo{
+	margin-right: 5px;
+}
+
+section#time table tbody tr td  p#valor{
+	margin-left: 5px;
+}
+
+footer{
+	text-align: center;
+	padding: 20px 0;
+	padding-bottom: 0;
+	clear: both;
+}
+
+footer span{
+	color: #1F1F1F;
+	font-size: 12px;
+	font-family: "Fira Sans";
+	text-shadow: 1px 0.5px 0 #FFFFFF;
+}

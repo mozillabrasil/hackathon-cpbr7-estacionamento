@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name=description content="WebApp - Estacionamento Sustentavel">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>WEB APP</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/script.js"></script>
+</head>
+<body>
+	<section class="container" id="wrap">
+		<header class="col-md-12">
+			<h1><img src="http://fc06.deviantart.net/fs70/i/2012/175/e/4/geek_fox____logos_for_sale_by_aeldesign-d54ngis.png" width="80px" height="80px" border="0">Foxparking</h1>
+		</header>
+		<section class="container" id="main">
+			<table>
+				<thead>
+					<tr><th colspan="4">Tarifas</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Segunda à Sexta</td>
+						<td> R$ 2.00 </td>
+					</tr>
+					<tr>
+						<td><strong>Sabado e Domingo</strong></td>
+						<td><strong>R$ 3.00</Strong></td>
+					</tr>
+				</tbody>
+				</tbody>
+			</table>
+		</section><!-- MAIN -->
+
+		<section id="time" class="container">
+			<table>
+				<thead>
+					<tr>
+						<th><span>Há(<span id="vagas">1</span>) Vagas</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><p id="tempo">00:00:00</p></td>
+						<td><p id="valor">0,00</p></td>
+					</tr>
+				</tbody>
+			</table>
+		</section> <!-- TIME -->
+		<footer>
+			<span>Desenvolvido para Hackation Na Campus Party 2014</span><br/>
+		</footer>
+	</section>
+
+
+<!------ CONTEUDO JAVASCRIPT --------------->
+
+
+
+	<!--  JavaScript -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">
+			var status = 0; // 0 = aguardando / 1 = passando / 2 = passou
+			var tempo, t;
+			var date;
+			var hI, hF;
+			var intervalo = window.setInterval(function() {
+			jQuery.getJSON('http://dca.telefonicabeta.com/m2m/v2/services/ermrwyddq55q/assets/ermrwyddq55q', function(resposta){
+				dados = resposta.data;
+				dadosSensor = dados.sensorData;
+				sensorLuminosidade = dadosSensor[2].ms.v;
+				sensorRuido = dadosSensor[4].ms.v;
+				sensorTemperatura = dadosSensor[1].ms.v;
+				sensorUmidade = dadosSensor[3].ms.v;
+
+				if (sensorLuminosidade <= 80 && status == 0) {
+					status = 1; // altera status
+					t = setInterval('tempo()',983); // contar cronometro
+					$('#vagas').html('0');
+				} else if (sensorLuminosidade > 80 && status == 1) {
+					status = 0; // altera status
+					clearInterval(t); // para contagem do cronometro
+					tempo = $('#tempo').text();
+					$('#tempo').html('Tempo: ' + tempo);
+					$('#vagas').html('1');
+
+					tempo = tempo.split(':');
+					if (tempo[0].parseInt > 0) {
+						a = (tempo[0]/60) + tempo[1];
+					} else {
+						a = tempo[1];
+					}
+
+					date = new Date();
+					dia = date.getDay();
+					switch(dia) {
+						case 0: // domingo 3,00
+							$('#valor').html('R$ ' + (a * 0.05).toFixed(2));
+							break;
+						case 1: // segundo 2,00
+							$('#valor').html('R$ ' + (a * 0.033333).toFixed(2));
+							break;
+						case 2: // terça 2,00
+							$('#valor').html('R$ ' + (a * 0.033333).toFixed(2));
+							break;
+						case 3: // quarta 2,00
+							$('#valor').html('R$ ' + (a * 0.033333).toFixed(2));
+							break;
+						case 4: // quinta 2,00
+							$('#valor').html('R$ ' + (a * 0.033333).toFixed(2));
+							break;
+						case 5: // sexta 2,00
+							$('#valor').html('R$ ' + (a * 0.033333).toFixed(2));
+							break;
+						case 6: // sabado 3,00
+							$('#valor').html('R$ ' + (a * 0.05).toFixed(2));
+							break;
+					}
+				}
+			});
+			}, 1000);
+
+			function diferencaHoras(horaInicial, horaFinal) {
+ 
+    			hIni = horaInicial.split(':');
+    			hFim = horaFinal.split(':');
+ 
+    			horasTotal = parseInt(hFim[0], 10) - parseInt(hIni[0], 10);
+    			minutosTotal = parseInt(hFim[1], 10) - parseInt(hIni[1], 10);
+     
+    			if(minutosTotal < 0){
+        			minutosTotal += 60;
+        			horasTotal -= 1;
+    			}
+     
+    			horaFinal = completaZeroEsquerda(horasTotal) + ":" + completaZeroEsquerda(minutosTotal);
+    			return horaFinal;
+			}
+
+			function completaZeroEsquerda(hora) {
+				if (hora.length > 9) {
+					return hora
+				} else {
+					return '0' + hora;
+				}
+			}
+
+			var segundo = 0+"0";
+			var minuto = 0+"0";
+			var hora = 0+"0";
+			 
+			function tempo(){	
+			   if (segundo < 59) {
+			      segundo++
+			      if(segundo < 10){segundo = "0"+segundo}
+			   } else { 
+			      if(segundo == 59 && minuto < 59) {
+			         segundo = 0+"0";
+					 minuto++;
+					 if(minuto < 10){minuto = "0"+minuto}
+			      }
+			   }
+			   if(minuto == 59 && segundo == 59 && hora < 23){
+			      segundo = 0+"0";
+			      minuto = 0+"0";
+			      hora++;
+			      if(hora < 10){hora = "0"+hora}
+			   } else {
+			      if(minuto == 59 && segundo == 59 && hora == 23){
+			         segundo = 0+"0";
+					 minuto = 0+"0";
+					 hora = 0+"0";
+			      }
+			   }
+			   $('#tempo').html(hora +":"+ minuto +":"+ segundo);
+			}
+		</script>
+</body>
+</html>
