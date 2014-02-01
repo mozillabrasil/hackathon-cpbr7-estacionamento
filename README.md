@@ -1,6 +1,10 @@
 Webapp_estacionamento
 =====================
 
+Autor: Icaro Ramires Costa de Souza
+Contato: icarobsi@hotmail.com, icarostylle@gmail.com (77) 9165-3296
+
+
 1 - O aplicativo foi desenvolvido para o Hackathon da IoT (Internet das coisas), utilizando o prototipo arduino da telefonica vivo para captar os dados, sendo assim necessario para funcionamento do aplicatico;
 
 2 O que é o Foxparking?
